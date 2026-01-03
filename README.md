@@ -107,7 +107,7 @@ Tasks and users are stored in a `data.json` file. This file is automatically cre
 ## Technologies Used
 
 - **Backend:** Node.js, Express.js
-- **Frontend:** HTML5, CSS3, Vanilla JavaScript
+- **Frontend:** HTML5, CSS3, JavaScript
 - **Authentication:** JWT (JSON Web Tokens), bcryptjs
 - **Storage:** JSON file-based storage
 
@@ -117,32 +117,6 @@ Tasks and users are stored in a `data.json` file. This file is automatically cre
 - JWT token-based authentication
 - User-specific task access (users can only see their own tasks)
 - Secure API endpoints with authentication middleware
-
-## Browser Support
-
-Works on all modern browsers:
-- Chrome
-- Firefox
-- Safari
-- Edge
-
-## Notes
-
-- The server must be running for the application to work
-- All data is stored locally in `data.json`
-- JWT tokens are stored in browser localStorage
-- The default secret key should be changed in production
-
-## Troubleshooting
-
-**Server won't start:**
-- Make sure port 3000 is not in use
-- Check that all dependencies are installed (`npm install`)
-
-**Can't login/register:**
-- Make sure the server is running
-- Check browser console for errors
-- Verify the API endpoint is correct
 
 **Tasks not loading:**
 - Check browser console for errors
