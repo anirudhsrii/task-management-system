@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login/Register Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="register">Register</button>
+            </div>
+            
+            <div id="loginForm" class="auth-form active">
+                <h2>Login</h2>
+                <form id="loginFormElement">
+                    <input type="text" id="loginUsername" placeholder="Username" required>
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p id="loginError" class="error-message"></p>
+            </div>
+            
+            <div id="registerForm" class="auth-form">
+                <h2>Register</h2>
+                <form id="registerFormElement">
+                    <input type="text" id="registerUsername" placeholder="Username" required>
+                    <input type="email" id="registerEmail" placeholder="Email (optional)">
+                    <input type="password" id="registerPassword" placeholder="Password" required>
+                    <button type="submit">Register</button>
+                </form>
+                <p id="registerError" class="error-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="app" class="hidden">
+        <header>
+            <h1>Task Management System</h1>
+            <div class="user-info">
+                <span id="usernameDisplay"></span>
+                <button id="logoutBtn" class="btn-secondary">Logout</button>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- Task Creation Form -->
+            <section class="task-form-section">
+                <h2>Create New Task</h2>
+                <form id="taskForm">
+                    <div class="form-group">
+                        <input type="text" id="taskTitle" placeholder="Task Title" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="taskDescription" placeholder="Task Description" rows="3"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="taskDueDate">Due Date:</label>
+                            <input type="date" id="taskDueDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="taskPriority">Priority:</label>
+                            <select id="taskPriority">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">Create Task</button>
+                </form>
+            </section>
+
+            <!-- Priority Lists -->
+            <section class="priority-lists">
+                <div class="priority-column" data-priority="high">
+                    <div class="priority-header high-priority">
+                        <h3>High Priority</h3>
+                        <span class="task-count" id="highCount">0</span>
+                    </div>
+                    <div class="task-list" id="highTasks"></div>
+                </div>
+                
+                <div class="priority-column" data-priority="medium">
+                    <div class="priority-header medium-priority">
+                        <h3>Medium Priority</h3>
+                        <span class="task-count" id="mediumCount">0</span>
+                    </div>
+                    <div class="task-list" id="mediumTasks"></div>
+                </div>
+                
+                <div class="priority-column" data-priority="low">
+                    <div class="priority-header low-priority">
+                        <h3>Low Priority</h3>
+                        <span class="task-count" id="lowCount">0</span>
+                    </div>
+                    <div class="task-list" id="lowTasks"></div>
+                </div>
+            </section>
+
+            <!-- Task List Section -->
+            <section class="task-list-section">
+                <div class="section-header">
+                    <h2>All Tasks</h2>
+                    <div class="filter-controls">
+                        <select id="statusFilter">
+                            <option value="">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="tasksContainer"></div>
+                <div class="pagination" id="pagination"></div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Task Details Modal -->
+    <div id="taskDetailsModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="taskDetailsContent"></div>
+        </div>
+    </div>
+
+    <!-- Task Edit Modal -->
+    <div id="taskEditModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Task</h2>
+            <form id="editTaskForm">
+                <input type="hidden" id="editTaskId">
+                <div class="form-group">
+                    <input type="text" id="editTaskTitle" placeholder="Task Title" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="editTaskDescription" placeholder="Task Description" rows="3"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editTaskDueDate">Due Date:</label>
+                        <input type="date" id="editTaskDueDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editTaskPriority">Priority:</label>
+                        <select id="editTaskPriority">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editTaskStatus">Status:</label>
+                        <select id="editTaskStatus">
+                            <option value="pending">Pending</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Update Task</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
