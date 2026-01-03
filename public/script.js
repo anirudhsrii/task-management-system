@@ -1,5 +1,8 @@
 // API Configuration
-const API_BASE = 'http://localhost:3000/api';
+// Use relative API path for production, localhost for development
+const API_BASE = window.location.hostname === 'localhost' 
+  ? 'http://localhost:3000/api'
+  : '/api';
 
 // State Management
 let currentUser = null;

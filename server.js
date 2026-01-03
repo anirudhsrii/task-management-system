@@ -7,8 +7,8 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
-const SECRET_KEY = 'your-secret-key-change-in-production';
+const PORT = process.env.PORT || 3000;
+const SECRET_KEY = process.env.SECRET_KEY || 'your-secret-key-change-in-production';
 const DATA_FILE = path.join(__dirname, 'data.json');
 
 // Middleware
@@ -241,6 +241,11 @@ app.get('/api/tasks/priority/:priority', authenticateToken, (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch tasks' });
   }
+});
+
+// Serve frontend for all non-API routes (for production deployment)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {
